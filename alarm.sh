@@ -1,7 +1,7 @@
 #!/bin/bash
 sudo apt-get update
 sudo apt-get -y install awscli
-
+aws configure
 #source ./p.sh
 #echo $keyid $accesskey $region
 #aws configure set aws_access_key_id $keyid
