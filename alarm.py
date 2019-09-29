@@ -5,7 +5,7 @@ os.system("sudo apt-get -y install awscli")
 os.system("aws configure")
 p2 = os.popen("ec2metadata --instance-id")
 ec2ID = p2.read().strip()
-p1 = os.popen("aws sns create-topic --name alarm)
+p1 = os.popen("aws sns create-topic --name alarm")
 arn = p1.read().strip()
 email = "1074623886@qq.com"
 os.system("aws sns subscribe --topic-arn %s --protocol email --notification-endpoint %s"%(arn,email))
