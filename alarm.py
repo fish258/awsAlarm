@@ -8,7 +8,16 @@ ec2ID = p2.read().strip()
 p1 = os.popen("aws sns create-topic --name alarm")
 arn = p1.read().strip()
 region = arn[12:21]
-email = "1074623886@qq.com"
+email = input("please input an email which can receive emails for alarm:")
+while True:
+    choice = input("The email you type in is '%s'\nPlease confirm your email is correct or not(Y/N):"%(uu))
+    if choice == "Y" or choice == "y":
+        break
+    if choice == "N" or choice == "n":
+        uu = input("please input an email which can receive emails for alarm:")
+    else:
+        print("please input Y or N")
+print("Confirm and email is %s"%email)
 os.system("aws sns subscribe --topic-arn %s --protocol email --notification-endpoint %s"%(arn,email))
 os.system("aws cloudwatch put-metric-alarm --alarm-name cpu-mon+%s --alarm-description 'Alarm when CPU exceeds 70 percent' --metric-name CPUUtilization --namespace AWS/EC2 --statistic Average --period 300 --threshold 70 --comparison-operator GreaterThanThreshold --dimensions  Name=InstanceId,Value=%s --evaluation-periods 2 --alarm-actions %s --unit Percent"%(ec2ID,ec2ID,arn))
 os.system("aws cloudwatch put-metric-alarm --alarm-name cpu-CreditUsage+%s --alarm-description 'Alarm when CPU Credit Usage exceeds 70 percent' --metric-name CPUCreditUsage --namespace AWS/EC2 --statistic Average --period 300 --threshold 70 --comparison-operator GreaterThanThreshold --dimensions  Name=InstanceId,Value=%s --evaluation-periods 2 --alarm-actions %s --unit Percent"%(ec2ID,ec2ID,arn))
