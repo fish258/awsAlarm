@@ -10,7 +10,7 @@ arn = p1.read().strip()
 region = arn[12:21]
 email = input("please input an email which can receive emails for alarm:")
 while True:
-    choice = input("The email you type in is '%s'\nPlease confirm your email is correct or not(Y/N):"%(uu))
+    choice = input("The email you type in is '%s'\nPlease confirm your email is correct or not(Y/N):"%(email))
     if choice == "Y" or choice == "y":
         break
     if choice == "N" or choice == "n":
